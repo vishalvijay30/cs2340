@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "64691645467",
+    "firebase_url": "https://waterreports-47d89.firebaseio.com",
+    "project_id": "waterreports-47d89",
+    "storage_bucket": "waterreports-47d89.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:64691645467:android:adb1a052f11b8d36",
+        "android_client_info": {
+          "package_name": "com.example.vishal.waterreports"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "64691645467-btq9s5cg383pcuql7oiros28retfm3pf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBXg8NzE3q1KYqxQrGtYTJzrKetovzh-tY"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
