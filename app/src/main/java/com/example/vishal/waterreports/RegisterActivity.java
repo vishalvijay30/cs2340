@@ -1,6 +1,7 @@
 package com.example.vishal.waterreports;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -47,11 +48,13 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     @Override
     public void onClick(View view) {
         if (view == buttonRegister) {
-            this.registerUser();
+            registerUser();
         }
 
         if (view == textViewLogin) {
             //open login activity
+            finish();
+            startActivity(new Intent(this, LoginActivity.class));
         }
     }
 
@@ -79,8 +82,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            Toast.makeText(RegisterActivity.this, "Registered!", Toast.LENGTH_LONG).show();
-                            progressDialog.hide();
+                            finish();
+                            startActivity(new Intent(RegisterActivity.this, ProfileActivity.class));
                         } else {
                             Toast.makeText(RegisterActivity.this, "Failed to register", Toast.LENGTH_LONG).show();
                             progressDialog.hide();
