@@ -64,13 +64,13 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
         if (TextUtils.isEmpty(email)) {
             //email is empty, stop execution
-            Toast.makeText(RegisterActivity.this, "Please enter valid email", Toast.LENGTH_SHORT);
+            Toast.makeText(RegisterActivity.this, "Please enter valid email", Toast.LENGTH_SHORT).show();
             return;
         }
 
         if (TextUtils.isEmpty(password)) {
             //password is empty, stop execution
-            Toast.makeText(RegisterActivity.this, "Please enter valid password", Toast.LENGTH_SHORT);
+            Toast.makeText(RegisterActivity.this, "Please enter valid password", Toast.LENGTH_SHORT).show();
             return;
         }
 

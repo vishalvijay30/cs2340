@@ -44,12 +44,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
-
         <Button
             android:id="@+id/buttonLogin"
             android:text="Login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
+
+        <Button
+            android:text="Cancel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/buttonCancel" />
 
         <TextView
             android:textAlignment="center"

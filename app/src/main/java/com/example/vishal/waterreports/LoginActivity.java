@@ -25,6 +25,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private EditText editTextEmail;
     private EditText editTextPassword;
     private TextView textViewRegister;
+    private Button buttonCancel;
 
     private ProgressDialog progressDialog;
 
@@ -41,9 +42,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         editTextEmail = (EditText) findViewById(R.id.editTextLoginEmail);
         editTextPassword = (EditText) findViewById(R.id.editTextLoginPassword);
         textViewRegister = (TextView) findViewById(R.id.textViewLoginRegister);
+        buttonCancel = (Button) findViewById(R.id.buttonCancel);
 
         buttonLogin.setOnClickListener(this);
         textViewRegister.setOnClickListener(this);
+        buttonCancel.setOnClickListener(this);
     }
 
     private void userLogin() {
@@ -73,8 +76,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                             finish();
                             startActivity(new Intent(LoginActivity.this, ProfileActivity.class));
                         } else {
-                            Toast.makeText(LoginActivity.this, "Failed to login", Toast.LENGTH_LONG);
+                            System.out.println("reached unsuccessful login");
                             progressDialog.hide();
+                            Toast.makeText(LoginActivity.this, "Failed to login", Toast.LENGTH_LONG).show();
                         }
                     }
                 });
@@ -89,6 +93,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         if (view == textViewRegister) {
             finish();
             startActivity(new Intent(this, RegisterActivity.class));
+        }
+
+        if (view == buttonCancel) {
+            finish();
+            startActivity(new Intent(this, MainActivity.class));
         }
     }
 }
