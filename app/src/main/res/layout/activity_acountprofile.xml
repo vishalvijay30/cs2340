@@ -19,21 +19,37 @@
 
 
         <TextView
-            android:text="User Email"
+            android:text="Email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/textView4"
-            android:textSize="24sp"
+            android:id="@+id/textViewEmail"
+            android:textSize="24dp"
             android:textAlignment="center" />
+        <TextView
+            android:text="Name"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:id="@+id/textViewName"
+            android:textSize="24dp"
+            android:textAlignment="center"/>
+        <TextView
+            android:text="Home Address"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:id="@+id/textViewHomeAddress"
+            android:textSize="24dp"
+            android:textAlignment="center"/>
+        <TextView
+            android:text="Account Type"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:id="@+id/textViewAccountType"
+            android:textSize="24dp"
+            android:textAlignment="center"/>
         <Button
-            android:text="Profile"
+            android:text="Edit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/profileButton"/>
-        <Button
-            android:text="Logout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/profileButtonLogout" />
+            android:id="@+id/profileEditButton" />
     </LinearLayout>
 </RelativeLayout>
