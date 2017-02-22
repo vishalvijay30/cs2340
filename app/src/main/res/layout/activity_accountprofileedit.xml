@@ -18,22 +18,43 @@
         android:layout_centerHorizontal="true">
 
 
-        <TextView
-            android:text="User Email"
+        <EditText
+            android:text="Email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/textView4"
-            android:textSize="24sp"
+            android:id="@+id/EditTextEmail"
+            android:textSize="24dp"
             android:textAlignment="center" />
+        <EditText
+            android:text="Name"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:id="@+id/EditTextName"
+            android:textSize="24dp"
+            android:textAlignment="center"/>
+        <EditText
+            android:text="Home Address"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:id="@+id/EditTextHomeAddress"
+            android:textSize="24dp"
+            android:textAlignment="center"/>
+        <EditText
+            android:text="Account Type"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:id="@+id/EditTextAccountType"
+            android:textSize="24dp"
+            android:textAlignment="center"/>
         <Button
-            android:text="Profile"
+            android:text="OK"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/profileButton"/>
+            android:id="@+id/profileEditOk" />
         <Button
-            android:text="Logout"
+            android:text="Cancel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/profileButtonLogout" />
+            android:id="@+id/profileEditCancel"/>
     </LinearLayout>
 </RelativeLayout>
