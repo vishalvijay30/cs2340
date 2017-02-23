@@ -1,3 +1,4 @@
+package com.example.vishal.waterreports;
 /**
  * Created by Team 42, CS2430 Spring 2017
  *
@@ -7,10 +8,10 @@
 
 public class Actor {
 
-    private String name;
-    private final String EMAIL;
-    private String homeAddress;
-    private AccountType accountType;
+    public String name;
+    public final String EMAIL;
+    public String homeAddress;
+    public AccountType accountType;
     /* attributes for collection of Water Reports */
 
     /**
@@ -28,44 +29,44 @@ public class Actor {
         this.accountType = accountType;
     }
 
-    /* Getters and setters */
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    /* No setter for this because EMAIL is a read only field */
-    public String getEmail() {
-        return EMAIL;
-    }
-
-    public String getHomeAddress() {
-        return homeAddress;
-    }
-
-    public void setHomeAddress(String homeAddress) {
-        this.homeAddress = homeAddress;
-    }
-
-    public AccountType getAccountType() {
-        return accountType;
-    }
-
-    public void setAccountType(AccountType accountType) {
-        this.accountType = accountType;
-    }
-
-    /**
-     * String representation of the actor and its attributes
-     * @return the string to be displayed
-     */
-    @Override
-    public String toString() {
-        return accountType + ": " + name + ", " + EMAIL + ", " + homeAddress;
-    }
+//    /* Getters and setters */
+//    public String getName() {
+//        return name;
+//    }
+//
+//    public void setName(String name) {
+//        this.name = name;
+//    }
+//
+//    /* No setter for this because EMAIL is a read only field */
+//    public String getEmail() {
+//        return EMAIL;
+//    }
+//
+//    public String getHomeAddress() {
+//        return homeAddress;
+//    }
+//
+//    public void setHomeAddress(String homeAddress) {
+//        this.homeAddress = homeAddress;
+//    }
+//
+//    public AccountType getAccountType() {
+//        return accountType;
+//    }
+//
+//    public void setAccountType(AccountType accountType) {
+//        this.accountType = accountType;
+//    }
+//
+//    /**
+//     * String representation of the actor and its attributes
+//     * @return the string to be displayed
+//     */
+//    @Override
+//    public String toString() {
+//        return accountType + ": " + name + ", " + EMAIL + ", " + homeAddress;
+//    }
 
     /* To-be-implemented app usage methods */
 

@@ -1,3 +1,5 @@
+package com.example.vishal.waterreports;
+
 public enum AccountType {
 	
 	USER("User"), WORKER("Worker"), MANAGER("Manager"), ADMIN("Admin");
