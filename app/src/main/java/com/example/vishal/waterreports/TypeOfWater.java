@@ -4,7 +4,7 @@ public enum TypeOfWater {
 
 	private String waterType;
 
-	private WaterType(String waterType) {
+	private TypeOfWater(String waterType) {
 		this.waterType = waterType;
 	}
 
