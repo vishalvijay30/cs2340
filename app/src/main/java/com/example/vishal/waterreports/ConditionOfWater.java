@@ -1,6 +1,6 @@
 public enum ConditionOfWater {
 	
-	WASTE("Waste"), TREATABLECLEAR("Treatable-Clear"), TREATABLEMUDDY("Treatable-Muddy"), PORTABLE("Portable");
+	WASTE("Waste"), TREATABLECLEAR("Treatable-Clear"), TREATABLEMUDDY("Treatable-Muddy"), POTABLE("Potable");
 
 	private String waterCondition;
 
