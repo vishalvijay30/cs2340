@@ -26,7 +26,7 @@
             android:textSize="24sp"
             android:textAlignment="center" />
         <Button
-            android:text="Profile"
+            android:text="Edit Profile"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/profileButton"/>

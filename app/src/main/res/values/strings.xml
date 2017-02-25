@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">WaterReports</string>
+    <string name="user_type_prompt">Choose User Type</string>
 </resources>
