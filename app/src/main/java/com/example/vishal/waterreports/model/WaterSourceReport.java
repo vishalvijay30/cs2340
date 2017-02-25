@@ -1,4 +1,5 @@
-package com.example.vishal.waterreports;
+import java.util.ArrayList;
+
 /**
  * Created by Team 42, CS2430 Spring 2017
  *
@@ -15,11 +16,13 @@ public class WaterSourceReport {
     public final String LOCATION;
     public final TypeOfWater WATER_TYPE;
     public final ConditionOfWater WATER_CONDITION;
+    public static ArrayList<WaterSourceReport> waterSourceReports
+            = new ArrayList<>();
 
     /**
      * Create a new Water Source Report
-     * @param REPORT_DATE       the date the report was submitted
-     * @param REPORT_TIME       the time the report was submitted
+     * @param REPORT_DATE       the date the report was submitted (##-##-####)
+     * @param REPORT_TIME       the time the report was submitted (24hour: ####)
      * @param REPORT_NUMBER     a unique identifying number for the report
      * @param REPORTER_NAME     the name of the user that submitted the report
      * @param LOCATION          the location of water that is being reported
@@ -35,8 +38,9 @@ public class WaterSourceReport {
         this.REPORT_NUMBER = REPORT_NUMBER;
         this.REPORTER_NAME = REPORTER_NAME;
         this.LOCATION = LOCATION;
-        this.typeOfWater = WATER_TYPE;
-        this.conditionOfWater = WATER_CONDITION;
+        this.WATER_TYPE = WATER_TYPE;
+        this.WATER_CONDITION = WATER_CONDITION;
+        waterSourceReports.add(this);
     }
 
     /* Getters for all read only fields */
@@ -68,10 +72,10 @@ public class WaterSourceReport {
      */
     @Override
     public String toString() {
-        return REPORTER_NAME + " submitted report number " + REPORT_NUMBER
-                + " at " + REPORT_TIME + " on " + REPORT_DATE + ": " + LOCATION
-                + " has " + WATER_TYPE + " water that is " + WATER_CONDITION
-                + ".";
+        return LOCATION + " has " + WATER_TYPE + " water that is "
+                + WATER_CONDITION + " (Report #" + REPORT_NUMBER
+                + " submitted by " + REPORTER_NAME + " at " + REPORT_TIME
+                + " hours on " + REPORT_DATE + ")";
     }
 
 }
