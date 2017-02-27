@@ -30,6 +30,19 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/profileButton"/>
+
+        <Button
+            android:text="Submit Water Report"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/SubmitWaterReportButton" />
+
+        <Button
+            android:text="View All Water Reports"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/ViewWaterReportsButton" />
+
         <Button
             android:text="Logout"
             android:layout_width="match_parent"
