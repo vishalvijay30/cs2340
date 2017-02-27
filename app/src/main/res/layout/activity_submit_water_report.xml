@@ -17,39 +17,24 @@
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true">
 
-
-        <TextView
-            android:text="Email"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/textViewEmail"
-            android:textSize="24dp"
-            android:textAlignment="center" />
-        <TextView
-            android:text="Name"
-            android:layout_height="wrap_content"
-            android:layout_width="match_parent"
-            android:id="@+id/textViewName"
-            android:textSize="24dp"
-            android:textAlignment="center"/>
-        <TextView
-            android:text="Home Address"
-            android:layout_height="wrap_content"
-            android:layout_width="match_parent"
-            android:id="@+id/textViewHomeAddress"
-            android:textSize="24dp"
-            android:textAlignment="center"/>
-        <TextView
-            android:text="Account Type"
-            android:layout_height="wrap_content"
-            android:layout_width="match_parent"
-            android:id="@+id/textViewAccountType"
-            android:textSize="24dp"
-            android:textAlignment="center"/>
         <Button
-            android:text="Edit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/profileEditButton" />
+            android:text="Submit Water Source Report"
+            android:id="@+id/WaterSourceReportButton" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Submit Water Purity Report"
+            android:id="@+id/WaterPurityReportButton" />
+
+        <Button
+            android:text="Cancel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/CancelButton" />
+
+
     </LinearLayout>
 </RelativeLayout>
