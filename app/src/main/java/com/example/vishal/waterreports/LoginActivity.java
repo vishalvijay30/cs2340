@@ -53,6 +53,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         textViewForgotPassword.setOnClickListener(this);
     }
 
+    /**
+     * Authenticates user credentials on firebase before logging in the user
+     */
     private void userLogin() {
         String email = editTextEmail.getText().toString().trim();
         String password = editTextPassword.getText().toString().trim();

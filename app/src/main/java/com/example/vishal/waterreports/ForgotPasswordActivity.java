@@ -43,6 +43,10 @@ public class ForgotPasswordActivity extends AppCompatActivity implements View.On
         }
     }
 
+    /**
+     * Method provides email password recovery functionality
+     * in the event that they have forgotten their password
+     */
     private void resetPassword() {
         String email = emailText.getText().toString().trim();
 

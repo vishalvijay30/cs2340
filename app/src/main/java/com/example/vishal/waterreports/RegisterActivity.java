@@ -87,6 +87,9 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         }
     }
 
+    /**
+     * Registers user by saving user authentication credentials on firebase
+     */
     private void registerUser() {
         final String name = editTextName.getText().toString().trim();
         final AccountType accountTypeSelected = (AccountType) spinnerAccountType.getSelectedItem();
@@ -131,6 +134,13 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
     }
 
+    /**
+     * Saves user's personal information on firebase
+     *
+     * @param userName the user's name
+     * @param userAccountType the user's account type
+     * @param userEmail the user's email
+     */
     private void saveUserInformation(String userName, AccountType userAccountType, String userEmail) {
         Actor actor = new Actor(userName, userEmail, "", userAccountType);
 

@@ -116,10 +116,18 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
         }
     }
 
+    /**
+     * Updates user's name on firebase
+     * @param newName the new name provided by the user
+     */
     private void updateName(String newName) {
         databaseReference.child(user.getUid()).child("name").setValue(newName);
     }
 
+    /**
+     * Updates user's address on firebase
+     * @param newAddress the new address provided by the user
+     */
     private void updateHomeAddress(String newAddress) {
         databaseReference.child(user.getUid()).child("homeAddress").setValue(newAddress);
     }
