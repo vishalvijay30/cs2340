@@ -1,3 +1,5 @@
+package com.example.vishal.waterreports.model;
+
 public enum OverallWaterCondition {
 
     SAFE("Safe"), TREATABLE("Treatable"), UNSAFE("Unsafe");

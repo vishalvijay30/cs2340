@@ -1,4 +1,4 @@
-package com.example.vishal.waterreports;
+package com.example.vishal.waterreports.controller;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.vishal.waterreports.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -25,9 +26,13 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
 
     private TextView textViewEmail;
     private Button editProfile;
+    private Button submitReportButton;
     private Button buttonLogout;
+    private Button buttonViewAllReports;
 
     private ProgressDialog progressDialog;
+
+    private int numReports;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,11 +46,24 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
 
         editProfile = (Button) findViewById(R.id.profileButton);
 
+        submitReportButton = (Button) findViewById(R.id.submitWaterReportButton);
+
         textViewEmail = (TextView) findViewById(R.id.textView4);
         databaseReference.child(user.getUid()).child("name").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                textViewEmail.setText("Hello "+dataSnapshot.getValue().toString());
+                textViewEmail.setText("Hello " + dataSnapshot.getValue().toString());
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        databaseReference.child("uniqueNumber").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                numReports = dataSnapshot.getValue(Integer.class);
             }
 
             @Override
@@ -53,9 +71,6 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
 
             }
         });
-
-
-
 
         progressDialog = new ProgressDialog(this);
 
@@ -65,9 +80,12 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         }
 
         buttonLogout = (Button) findViewById(R.id.profileButtonLogout);
+        buttonViewAllReports = (Button) findViewById(R.id.viewWaterReportsButton);
 
         editProfile.setOnClickListener(this);
         buttonLogout.setOnClickListener(this);
+        submitReportButton.setOnClickListener(this);
+        buttonViewAllReports.setOnClickListener(this);
     }
 
     @Override
@@ -84,5 +102,20 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
             finish();
             startActivity(new Intent(ProfileActivity.this, EditProfileActivity.class));
         }
+
+        if (view == submitReportButton) {
+            finish();
+            startActivity(new Intent(ProfileActivity.this, SubmitWaterSourceReportActivity.class));
+        }
+
+        if (view == buttonViewAllReports) {
+            finish();
+            Intent myIntent = new Intent(ProfileActivity.this, AllReportsActivity.class);
+            myIntent.putExtra("number", numReports);
+            startActivity(myIntent);
+            //startActivity(new Intent(ProfileActivity.this, AllReportsActivity.class));
+        }
     }
+
+
 }

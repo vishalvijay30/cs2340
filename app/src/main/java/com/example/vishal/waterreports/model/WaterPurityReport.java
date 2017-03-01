@@ -1,3 +1,4 @@
+package com.example.vishal.waterreports.model;
 import java.util.ArrayList;
 
 /**

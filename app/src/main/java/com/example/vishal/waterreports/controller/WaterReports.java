@@ -1,4 +1,4 @@
-package com.example.vishal.waterreports;
+package com.example.vishal.waterreports.controller;
 
 import android.app.Application;
 

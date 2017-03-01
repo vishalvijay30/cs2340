@@ -1,4 +1,5 @@
-package com.example.vishal.waterreports;
+package com.example.vishal.waterreports.model;
+
 /**
  * Created by Team 42, CS2430 Spring 2017
  *

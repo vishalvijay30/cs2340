@@ -1,6 +1,7 @@
-package com.example.vishal.waterreports;
+package com.example.vishal.waterreports.controller;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -10,14 +11,15 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.vishal.waterreports.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
-
 public class ForgotPasswordActivity extends AppCompatActivity implements View.OnClickListener {
 
     private EditText emailText;
     private Button sendEmailButton;
+    private Button buttonCancel;
     private ProgressDialog progressDialog;
 
     private FirebaseAuth firebaseAuth;
@@ -32,14 +34,21 @@ public class ForgotPasswordActivity extends AppCompatActivity implements View.On
 
         emailText = (EditText) findViewById(R.id.editTextForgotPasswordEmail);
         sendEmailButton = (Button) findViewById(R.id.buttonReset);
+        buttonCancel = (Button) findViewById(R.id.buttonCancel);
 
         sendEmailButton.setOnClickListener(this);
+        buttonCancel.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View view) {
         if (view == sendEmailButton) {
             resetPassword();
+        }
+
+        if (view == buttonCancel) {
+            finish();
+            startActivity(new Intent(this, LoginActivity.class));
         }
     }
 

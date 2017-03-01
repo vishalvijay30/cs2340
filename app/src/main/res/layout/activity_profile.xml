@@ -35,13 +35,13 @@
             android:text="Submit Water Report"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/SubmitWaterReportButton" />
+            android:id="@+id/submitWaterReportButton" />
 
         <Button
             android:text="View All Water Reports"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/ViewWaterReportsButton" />
+            android:id="@+id/viewWaterReportsButton" />
 
         <Button
             android:text="Logout"

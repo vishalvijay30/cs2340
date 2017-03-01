@@ -8,7 +8,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.vishal.waterreports.RegisterActivity">
+    tools:context="com.example.vishal.waterreports.controller.SubmitWaterSourceReportActivity">
 
     <LinearLayout
         android:orientation="vertical"
@@ -19,55 +19,70 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true">
 
-        <TextView
+        <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="12pt"
-            android:text="Date and Time"
-            android:id="@+id/DateTimeTextView"/>
+            android:hint="Date"
+            android:id="@+id/DateTextView"
+            android:layout_margin="5dp"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Time"
+            android:id="@+id/TimeTextView"
+            android:layout_margin="5dp"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="12pt"
             android:text="Report Number"
-            android:id="@+id/ReportNumberTextView"/>
+            android:id="@+id/ReportNumberTextView"
+            android:layout_margin="5dp"
+            android:textSize="12pt"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="12pt"
-            android:text="Report Name"
-            android:id="@+id/ReportNameTextView"/>
+            android:text="Reporter Name"
+            android:id="@+id/ReporterNameTextView"
+            android:layout_margin="5dp"
+            android:textSize="12pt"/>
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Location of Water"
-            android:textSize="12pt"
-            android:id="@+id/LocationEditText" />
+            android:id="@+id/LocationEditText"
+            android:layout_margin="5dp"/>
 
         <Spinner
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:id="@+id/WaterTypeSpinner"> </Spinner>
+            android:layout_height="30dp"
+            android:id="@+id/WaterTypeSpinner"
+            android:prompt="@string/water_type_prompt"
+            android:layout_margin="5dp"> </Spinner>
 
         <Spinner
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:id="@+id/WaterConditionSpinner"> </Spinner>
+            android:layout_height="30dp"
+            android:id="@+id/WaterConditionSpinner"
+            android:prompt="@string/water_condition_prompt"
+            android:layout_margin="5dp"> </Spinner>
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Submit"
-            android:id="@+id/SubmitButton"/>
+            android:id="@+id/SubmitButton"
+            android:layout_margin="5dp" />
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Cancel"
-            android:id="@+id/CancelButton"/>
+            android:id="@+id/CancelButton"
+            android:layout_margin="5dp"/>
 
     </LinearLayout>
 

@@ -1,4 +1,4 @@
-package com.example.vishal.waterreports;
+package com.example.vishal.waterreports.controller;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -14,6 +14,9 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.vishal.waterreports.R;
+import com.example.vishal.waterreports.model.AccountType;
+import com.example.vishal.waterreports.model.Actor;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -62,6 +65,9 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         addItemsToSpinner();
     }
 
+    /**
+     * Populates the spinner with AccountType enum values
+     */
     private void addItemsToSpinner() {
         List<AccountType> list = new ArrayList<>();
         list.add(AccountType.USER);

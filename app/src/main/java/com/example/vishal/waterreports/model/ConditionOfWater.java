@@ -1,3 +1,4 @@
+package com.example.vishal.waterreports.model;
 public enum ConditionOfWater {
 	
 	WASTE("Waste"), TREATABLECLEAR("Treatable-Clear"), TREATABLEMUDDY("Treatable-Muddy"), POTABLE("Potable");

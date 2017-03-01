@@ -5,24 +5,27 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:name=".WaterReports"
+        android:name=".controller.WaterReports"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".controller.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".RegisterActivity" />
-        <activity android:name=".LoginActivity" />
-        <activity android:name=".ProfileActivity" />
-        <activity android:name=".ForgotPasswordActivity" />
-        <activity android:name=".EditProfileActivity"></activity>
+        <activity android:name=".controller.RegisterActivity" />
+        <activity android:name=".controller.LoginActivity" />
+        <activity android:name=".controller.ProfileActivity" />
+        <activity android:name=".controller.ForgotPasswordActivity" />
+        <activity android:name=".controller.EditProfileActivity" />
+        <activity android:name=".controller.SubmitWaterSourceReportActivity" />
+        <activity android:name=".controller.AllReportsActivity" />
+        <activity android:name=".controller.SingleReportActivity"></activity>
     </application>
 
 </manifest>
