@@ -36,10 +36,26 @@ public class SingleReportActivity extends AppCompatActivity {
         reportNum = i.getIntExtra("position", 0);
 
         textViewReportTitle.setText("Report "+reportNum);
-        databaseReference.child("Reports").child(reportNum.toString()).addValueEventListener(new ValueEventListener() {
+//        databaseReference.child("Reports").child(reportNum.toString()).addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(DataSnapshot dataSnapshot) {
+//                textViewReportInfo.setText(dataSnapshot.getValue().toString());
+//            }
+//
+//            @Override
+//            public void onCancelled(DatabaseError databaseError) {
+//
+//            }
+//        });
+        displayIndividualReportInfo();
+    }
+
+    private void displayIndividualReportInfo() {
+
+        databaseReference.child("Reports").child(reportNum.toString()).child("LOCATION").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                textViewReportInfo.setText(dataSnapshot.getValue().toString());
+                textViewReportInfo.setText(dataSnapshot.getValue().toString() + " has ");
             }
 
             @Override
@@ -47,15 +63,71 @@ public class SingleReportActivity extends AppCompatActivity {
 
             }
         });
-        //displayIndividualReportInfo();
-    }
 
-    private void displayIndividualReportInfo() {
+        databaseReference.child("Reports").child(reportNum.toString()).child("WATER_TYPE").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                textViewReportInfo.setText(textViewReportInfo.getText().toString() + dataSnapshot.getValue().toString() + " water that is ");
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        databaseReference.child("Reports").child(reportNum.toString()).child("WATER_CONDITION").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                textViewReportInfo.setText(textViewReportInfo.getText().toString() + dataSnapshot.getValue().toString() + " (Report #");
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        databaseReference.child("Reports").child(reportNum.toString()).child("REP_NUMBER").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                textViewReportInfo.setText(textViewReportInfo.getText().toString() + dataSnapshot.getValue().toString() + " submitted by ");
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        databaseReference.child("Reports").child(reportNum.toString()).child("REPORTER_NAME").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                textViewReportInfo.setText(textViewReportInfo.getText().toString() + dataSnapshot.getValue().toString() + " at ");
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        databaseReference.child("Reports").child(reportNum.toString()).child("REPORT_TIME").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                textViewReportInfo.setText(textViewReportInfo.getText().toString() + dataSnapshot.getValue().toString() + " on ");
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
 
         databaseReference.child("Reports").child(reportNum.toString()).child("REPORT_DATE").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-
+                textViewReportInfo.setText(textViewReportInfo.getText().toString() + dataSnapshot.getValue().toString() + ")");
             }
 
             @Override
