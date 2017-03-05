@@ -3,6 +3,8 @@ package com.example.vishal.waterreports.controller;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.vishal.waterreports.R;
@@ -12,13 +14,14 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class SingleReportActivity extends AppCompatActivity {
+public class SingleReportActivity extends AppCompatActivity implements View.OnClickListener {
 
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
 
     private TextView textViewReportTitle;
     private TextView textViewReportInfo;
+    private Button cancelButton;
 
     private Integer reportNum;
     @Override
@@ -36,17 +39,6 @@ public class SingleReportActivity extends AppCompatActivity {
         reportNum = i.getIntExtra("position", 0);
 
         textViewReportTitle.setText("Report "+reportNum);
-//        databaseReference.child("Reports").child(reportNum.toString()).addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(DataSnapshot dataSnapshot) {
-//                textViewReportInfo.setText(dataSnapshot.getValue().toString());
-//            }
-//
-//            @Override
-//            public void onCancelled(DatabaseError databaseError) {
-//
-//            }
-//        });
         displayIndividualReportInfo();
     }
 
@@ -135,5 +127,17 @@ public class SingleReportActivity extends AppCompatActivity {
 
             }
         });
+
+        cancelButton = (Button) findViewById(R.id.backButton);
+        cancelButton.setText("Back");
+        cancelButton.setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View view) {
+        if (view == cancelButton) {
+            finish();
+            startActivity(new Intent(SingleReportActivity.this, ProfileActivity.class));
+        }
     }
 }
