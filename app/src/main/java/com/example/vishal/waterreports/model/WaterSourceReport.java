@@ -44,7 +44,6 @@ public class WaterSourceReport {
         this.WATER_CONDITION = WATER_CONDITION;
         waterSourceReports.add(this);
     }
-
     /* Getters for all read only fields */
 //    public String getReportDate() {
 //        return REPORT_DATE;

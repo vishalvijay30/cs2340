@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.vishal.waterreports.R;
+import com.example.vishal.waterreports.model.WaterSourceReport;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -17,7 +18,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class ProfileActivity extends AppCompatActivity implements View.OnClickListener {
+import java.io.Serializable;
+
+public class ProfileActivity extends AppCompatActivity implements View.OnClickListener, Serializable {
 
     private FirebaseAuth firebaseAuth;
     private FirebaseUser user;
@@ -29,10 +32,13 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
     private Button submitReportButton;
     private Button buttonLogout;
     private Button buttonViewAllReports;
+    private Button buttonMap;
 
     private ProgressDialog progressDialog;
 
     private int numReports;
+
+    private WaterSourceReport[] waterSourceReports;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +70,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 numReports = dataSnapshot.getValue(Integer.class);
+                System.out.println("number"+dataSnapshot.getValue());
             }
 
             @Override
@@ -81,11 +88,15 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
 
         buttonLogout = (Button) findViewById(R.id.profileButtonLogout);
         buttonViewAllReports = (Button) findViewById(R.id.viewWaterReportsButton);
+        buttonMap = (Button) findViewById(R.id.viewWaterReportsButtonMap);
 
         editProfile.setOnClickListener(this);
         buttonLogout.setOnClickListener(this);
         submitReportButton.setOnClickListener(this);
         buttonViewAllReports.setOnClickListener(this);
+        buttonMap.setOnClickListener(this);
+
+
     }
 
     @Override
@@ -113,9 +124,14 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
             Intent myIntent = new Intent(ProfileActivity.this, AllReportsActivity.class);
             myIntent.putExtra("number", numReports);
             startActivity(myIntent);
-            //startActivity(new Intent(ProfileActivity.this, AllReportsActivity.class));
+        }
+
+        if (view == buttonMap) {
+            finish();
+            Intent myIntent = new Intent(ProfileActivity.this, MapsActivity.class);
+            myIntent.putExtra("num", numReports);
+            startActivity(myIntent);
         }
     }
-
 
 }

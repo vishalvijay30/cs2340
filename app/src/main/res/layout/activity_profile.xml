@@ -38,10 +38,16 @@
             android:id="@+id/submitWaterReportButton" />
 
         <Button
-            android:text="View All Water Reports"
+            android:text="View All Water Reports (List)"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/viewWaterReportsButton" />
+
+        <Button
+            android:text="View All Water Reports (Map)"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/viewWaterReportsButtonMap" />
 
         <Button
             android:text="Logout"
