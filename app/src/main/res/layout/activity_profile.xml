@@ -32,20 +32,19 @@
             android:id="@+id/profileButton"/>
 
         <Button
-            android:text="Submit Water Report"
+            android:text="Submit Water Source Report"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/submitWaterReportButton" />
 
         <Button
-            android:text="View All Water Reports (List)"
-            android:text="Submit Quality Report"
+            android:text="Submit Water Quality Report"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/button2" />
+            android:id="@+id/submitWaterQualityReportButton" />
 
         <Button
-            android:text="View All Water Reports"
+            android:text="View All Water Reports (List)"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/viewWaterReportsButton" />

@@ -11,7 +11,7 @@ import java.util.ArrayList;
 public class WaterPurityReport {
 
     public final String REPORT_DATE;
-    public final int REPORT_TIME;
+    public final String REPORT_TIME;
     public final int REPORT_NUMBER;
     public final String WORKER_NAME;
     public final String LOCATION;
@@ -32,7 +32,7 @@ public class WaterPurityReport {
      * @param VIRUS          the amount of virus parts-per-million in the water
      * @param CONTAMINANT    the amount of contaminant parts-per-million in the water
      */
-    public WaterPurityReport(String REPORT_DATE, int REPORT_TIME,
+    public WaterPurityReport(String REPORT_DATE, String REPORT_TIME,
                              int REPORT_NUMBER, String WORKER_NAME,
                              String LOCATION, OverallWaterCondition CONDITION,
                              int VIRUS, int CONTAMINANT) {
@@ -47,31 +47,31 @@ public class WaterPurityReport {
         waterPurityReports.add(this);
     }
 
-    /* Getters for all read only fields */
-    public String getReportDate() {
-        return REPORT_DATE;
-    }
-    public int getReportTime() {
-        return REPORT_TIME;
-    }
-    public int getReportNumber() {
-        return REPORT_NUMBER;
-    }
-    public String getWorkerName() {
-        return WORKER_NAME;
-    }
-    public String getLocation() {
-        return LOCATION;
-    }
-    public OverallWaterCondition getCondition() {
-        return CONDITION;
-    }
-    public int getVirus() {
-        return VIRUS;
-    }
-    public int getContaminant() {
-        return CONTAMINANT;
-    }
+//    /* Getters for all read only fields */
+//    public String getReportDate() {
+//        return REPORT_DATE;
+//    }
+//    public String getReportTime() {
+//        return REPORT_TIME;
+//    }
+//    public int getReportNumber() {
+//        return REPORT_NUMBER;
+//    }
+//    public String getWorkerName() {
+//        return WORKER_NAME;
+//    }
+//    public String getLocation() {
+//        return LOCATION;
+//    }
+//    public OverallWaterCondition getCondition() {
+//        return CONDITION;
+//    }
+//    public int getVirus() {
+//        return VIRUS;
+//    }
+//    public int getContaminant() {
+//        return CONTAMINANT;
+//    }
 
     /**
      * String representation of the Water Source Report

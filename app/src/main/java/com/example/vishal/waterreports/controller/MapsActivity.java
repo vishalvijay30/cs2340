@@ -6,6 +6,7 @@ import android.location.Geocoder;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.vishal.waterreports.R;
@@ -31,12 +32,13 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
+public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, View.OnClickListener {
 
     private GoogleMap mMap;
     private int numReports;
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
+    private Button buttonBack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +55,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         Intent i = getIntent();
         numReports = i.getIntExtra("num", 0);
         System.out.println("Hello " +numReports);
+
+        buttonBack = (Button) findViewById(R.id.buttonBack);
+        buttonBack.setOnClickListener(this);
     }
 
 
@@ -156,6 +161,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             System.out.println("monkey: "+report);
         }
     }
+
+    @Override
+    public void onClick(View view) {
+        if (view == buttonBack) {
+            finish();
+            startActivity(new Intent(MapsActivity.this, ProfileActivity.class));
+        }
+    }
+
     class CustomInfoWindowAdapter implements GoogleMap.InfoWindowAdapter {
         private final View myContentsView;
 

@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.vishal.waterreports.R;
 import com.example.vishal.waterreports.model.WaterSourceReport;
@@ -19,6 +20,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.io.Serializable;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class ProfileActivity extends AppCompatActivity implements View.OnClickListener, Serializable {
 
@@ -33,6 +36,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
     private Button buttonLogout;
     private Button buttonViewAllReports;
     private Button buttonMap;
+    private Button submitWaterQualityReportButton;
 
     private ProgressDialog progressDialog;
 
@@ -89,13 +93,14 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         buttonLogout = (Button) findViewById(R.id.profileButtonLogout);
         buttonViewAllReports = (Button) findViewById(R.id.viewWaterReportsButton);
         buttonMap = (Button) findViewById(R.id.viewWaterReportsButtonMap);
+        submitWaterQualityReportButton = (Button) findViewById(R.id.submitWaterQualityReportButton);
 
         editProfile.setOnClickListener(this);
         buttonLogout.setOnClickListener(this);
         submitReportButton.setOnClickListener(this);
         buttonViewAllReports.setOnClickListener(this);
         buttonMap.setOnClickListener(this);
-
+        submitWaterQualityReportButton.setOnClickListener(this);
 
     }
 
@@ -131,6 +136,39 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
             Intent myIntent = new Intent(ProfileActivity.this, MapsActivity.class);
             myIntent.putExtra("num", numReports);
             startActivity(myIntent);
+        }
+
+        if (view == submitWaterQualityReportButton) {
+            final String[] accountType = new String[1];
+            databaseReference.child(user.getUid()).child("accountType").addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    accountType[0] = dataSnapshot.getValue(String.class);
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
+            new Timer().schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            if (accountType[0].equals("USER")) {
+                                Toast.makeText(getApplicationContext(),
+                                        "Not authorized to submit Quality Report", Toast.LENGTH_LONG).show();
+                            } else {
+                                finish();
+                                startActivity(new Intent(ProfileActivity.this,
+                                        SubmitWaterQualityReportActivity.class));
+                            }
+                        }
+                    });
+                }
+            }, 1000);
         }
     }
 
