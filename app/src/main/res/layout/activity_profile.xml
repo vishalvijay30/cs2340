@@ -39,6 +39,13 @@
 
         <Button
             android:text="View All Water Reports (List)"
+            android:text="Submit Quality Report"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/button2" />
+
+        <Button
+            android:text="View All Water Reports"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/viewWaterReportsButton" />
