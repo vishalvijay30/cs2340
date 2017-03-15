@@ -37,10 +37,12 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
     private Button buttonViewAllReports;
     private Button buttonMap;
     private Button submitWaterQualityReportButton;
+    private Button buttonViewAllQualReports;
 
     private ProgressDialog progressDialog;
 
     private int numReports;
+    private int numQualReports;
 
     private WaterSourceReport[] waterSourceReports;
 
@@ -83,6 +85,20 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
             }
         });
 
+        databaseReference.child("uniqueNumberQual").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                numQualReports = dataSnapshot.getValue(Integer.class);
+                System.out.println("number"+dataSnapshot.getValue());
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+
         progressDialog = new ProgressDialog(this);
 
         if (firebaseAuth.getCurrentUser() == null) {
@@ -94,6 +110,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         buttonViewAllReports = (Button) findViewById(R.id.viewWaterReportsButton);
         buttonMap = (Button) findViewById(R.id.viewWaterReportsButtonMap);
         submitWaterQualityReportButton = (Button) findViewById(R.id.submitWaterQualityReportButton);
+        buttonViewAllQualReports = (Button) findViewById(R.id.viewWaterPurityReportsButton);
 
         editProfile.setOnClickListener(this);
         buttonLogout.setOnClickListener(this);
@@ -101,7 +118,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         buttonViewAllReports.setOnClickListener(this);
         buttonMap.setOnClickListener(this);
         submitWaterQualityReportButton.setOnClickListener(this);
-
+        buttonViewAllQualReports.setOnClickListener(this);
     }
 
     @Override
@@ -128,6 +145,13 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
             finish();
             Intent myIntent = new Intent(ProfileActivity.this, AllReportsActivity.class);
             myIntent.putExtra("number", numReports);
+            startActivity(myIntent);
+        }
+
+        if (view == buttonViewAllQualReports) {
+            finish();
+            Intent myIntent = new Intent(ProfileActivity.this, AllQualReportsActivity.class);
+            myIntent.putExtra("number", numQualReports);
             startActivity(myIntent);
         }
 

@@ -48,7 +48,9 @@
         <activity
             android:name=".controller.MapsActivity"
             android:label="@string/title_activity_maps" />
-        <activity android:name=".controller.SubmitWaterQualityReportActivity"></activity>
+        <activity android:name=".controller.SubmitWaterQualityReportActivity" />
+        <activity android:name=".controller.AllQualReportsActivity" />
+        <activity android:name=".controller.SingleQualReportActivity"></activity>
     </application>
 
 </manifest>

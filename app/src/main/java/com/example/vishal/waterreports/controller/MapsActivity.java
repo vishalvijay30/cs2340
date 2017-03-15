@@ -32,7 +32,8 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, View.OnClickListener {
+public class MapsActivity extends FragmentActivity implements OnMapReadyCallback,
+        View.OnClickListener {
 
     private GoogleMap mMap;
     private int numReports;
@@ -89,11 +90,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.setInfoWindowAdapter(new CustomInfoWindowAdapter());
     }
 
+    /**
+     * Loads report data from firebase
+     * @return a list containing all reports stored in the model (firebase)
+     */
     private ArrayList<WaterSourceReport> loadInfo() {
         final ArrayList<WaterSourceReport> reports = new ArrayList<>(numReports);
         for (int i = 0; i < numReports; i++) {
             //System.out.println("position: "+pos[0]);
-            databaseReference.child("Reports").child(Integer.toString(i)).addValueEventListener(new ValueEventListener() {
+            databaseReference.child("Reports").child(Integer.toString(i)).addValueEventListener(
+                    new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     reports.add(new WaterSourceReport(
@@ -103,7 +109,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                             dataSnapshot.child("REPORTER_NAME").getValue().toString(),
                             dataSnapshot.child("LOCATION").getValue().toString(),
                             determineWaterType(dataSnapshot.child("WATER_TYPE").getValue().toString()),
-                            determineWaterCondition(dataSnapshot.child("WATER_CONDITION").getValue().toString())
+                            determineWaterCondition(dataSnapshot.child(
+                                    "WATER_CONDITION").getValue().toString())
                     ));
                 }
 
@@ -116,6 +123,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         return reports;
     }
 
+    /**
+     * Transforms string representation of TypeOfWater enum values into actual enum values
+     * @param type String representation of type received from firebase
+     * @return enum type of the string
+     */
     private TypeOfWater determineWaterType(String type) {
         if (type.equals("BOTTLED")) {
             return TypeOfWater.BOTTLED;
@@ -132,6 +144,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
     }
 
+    /**
+     * Transforms string representation of ConditionOfWater enum values into actual enum values
+     * @param condition String representation of condition received from firebase
+     * @return enum type of the string
+     */
     private ConditionOfWater determineWaterCondition(String condition) {
         if (condition.equals("WASTE")) {
             return ConditionOfWater.WASTE;
@@ -144,6 +161,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
     }
 
+    /**
+     * Populates the map by placing pins at each report location and creating message windows
+     * about the reports to be displayed when the pin is clicked
+     * @param reports list of reports in the model
+     */
     private void populateMap(ArrayList<WaterSourceReport> reports) {
         for (WaterSourceReport report : reports) {
             System.out.println("reached");
@@ -156,7 +178,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
             Address address = addressList.get(0);
             LatLng loc = new LatLng(address.getLatitude(), address.getLongitude());
-            mMap.addMarker(new MarkerOptions().position(loc).title("Report #"+report.REP_NUMBER).snippet(report.toString()));
+            mMap.addMarker(new MarkerOptions().position(loc).title(
+                    "Report #"+report.REP_NUMBER).snippet(report.toString()));
             mMap.moveCamera(CameraUpdateFactory.newLatLng(loc));
             System.out.println("monkey: "+report);
         }
