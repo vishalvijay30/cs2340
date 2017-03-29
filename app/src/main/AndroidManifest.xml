@@ -50,7 +50,9 @@
             android:label="@string/title_activity_maps" />
         <activity android:name=".controller.SubmitWaterQualityReportActivity" />
         <activity android:name=".controller.AllQualReportsActivity" />
-        <activity android:name=".controller.SingleQualReportActivity"></activity>
+        <activity android:name=".controller.SingleQualReportActivity" />
+        <activity android:name=".controller.HistoricalGraphActivity" />
+        <activity android:name=".controller.GenerateGraphActivity"></activity>
     </application>
 
 </manifest>

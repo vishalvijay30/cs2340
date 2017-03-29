@@ -62,6 +62,12 @@
             android:id="@+id/viewWaterPurityReportsButton" />
 
         <Button
+            android:text="View Graph"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/viewGraphButton" />
+
+        <Button
             android:text="Logout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

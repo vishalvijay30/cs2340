@@ -38,6 +38,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
     private Button buttonMap;
     private Button submitWaterQualityReportButton;
     private Button buttonViewAllQualReports;
+    private Button viewGraphButton;
 
     private ProgressDialog progressDialog;
 
@@ -111,6 +112,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         buttonMap = (Button) findViewById(R.id.viewWaterReportsButtonMap);
         submitWaterQualityReportButton = (Button) findViewById(R.id.submitWaterQualityReportButton);
         buttonViewAllQualReports = (Button) findViewById(R.id.viewWaterPurityReportsButton);
+        viewGraphButton = (Button) findViewById(R.id.viewGraphButton);
 
         editProfile.setOnClickListener(this);
         buttonLogout.setOnClickListener(this);
@@ -119,6 +121,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         buttonMap.setOnClickListener(this);
         submitWaterQualityReportButton.setOnClickListener(this);
         buttonViewAllQualReports.setOnClickListener(this);
+        viewGraphButton.setOnClickListener(this);
     }
 
     @Override
@@ -149,10 +152,37 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         }
 
         if (view == buttonViewAllQualReports) {
-            finish();
-            Intent myIntent = new Intent(ProfileActivity.this, AllQualReportsActivity.class);
-            myIntent.putExtra("number", numQualReports);
-            startActivity(myIntent);
+            final String[] accountType = new String[1];
+            databaseReference.child(user.getUid()).child("accountType").addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    accountType[0] = dataSnapshot.getValue(String.class);
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
+            new Timer().schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            if (!accountType[0].equals("MANAGER")) {
+                                Toast.makeText(getApplicationContext(),
+                                        "Not authorized to view Quality Reports", Toast.LENGTH_LONG).show();
+                            } else {
+                                finish();
+                                Intent myIntent = new Intent(ProfileActivity.this, AllQualReportsActivity.class);
+                                myIntent.putExtra("number", numQualReports);
+                                startActivity(myIntent);
+                            }
+                        }
+                    });
+                }
+            }, 1000);
         }
 
         if (view == buttonMap) {
@@ -193,6 +223,39 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
                     });
                 }
             }, 1000);
+        }
+
+        if (view == viewGraphButton) {
+            final String[] accountType = new String[1];
+            databaseReference.child(user.getUid()).child("accountType").addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    accountType[0] = dataSnapshot.getValue(String.class);
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
+            new Timer().schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            if (accountType[0].equals("USER") || accountType[0].equals("WORKER")) {
+                                Toast.makeText(getApplicationContext(),
+                                        "Not authorized to view Historical Graph", Toast.LENGTH_LONG).show();
+                            } else {
+                                finish();
+                                startActivity(new Intent(ProfileActivity.this, GenerateGraphActivity.class));
+                            }
+                        }
+                    });
+                }
+            }, 1000);
+
         }
     }
 

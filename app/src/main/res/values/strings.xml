@@ -3,5 +3,7 @@
     <string name="user_type_prompt">Choose User Type</string>
     <string name="water_type_prompt">Choose Water Type</string>
     <string name="water_condition_prompt">Choose Water Condition</string>
+    <string name="ppm_prompt">Choose PPM Type</string>
+    <string name="month_prompt">Choose Month</string>
     <string name="title_activity_maps">Map</string>
 </resources>
