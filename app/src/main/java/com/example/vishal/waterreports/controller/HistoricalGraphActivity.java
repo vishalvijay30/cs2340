@@ -49,9 +49,31 @@ public class HistoricalGraphActivity extends AppCompatActivity implements View.O
         populateGraph();
         backButton.setOnClickListener(this);
 
-
-
-
+        if (month.equals("January")) {
+            month = "01";
+        } else if (month.equals("February")) {
+            month = "02";
+        } else if (month.equals("March")) {
+            month = "03";
+        } else if (month.equals("April")) {
+            month = "04";
+        } else if (month.equals("May")) {
+            month = "05";
+        } else if (month.equals("June")) {
+            month = "06";
+        } else if (month.equals("July")) {
+            month = "07";
+        } else if (month.equals("August")) {
+            month = "08";
+        } else if (month.equals("September")) {
+            month = "09";
+        } else if (month.equals("October")) {
+            month = "10";
+        } else if (month.equals("November")) {
+            month = "11";
+        } else {
+            month = "12";
+        }
     }
 
     /**
@@ -128,7 +150,7 @@ public class HistoricalGraphActivity extends AppCompatActivity implements View.O
                                         runOnUiThread(new Runnable() {
                                             @Override
                                             public void run() {
-                                                if (date[0].substring(0, 2).equals("03")) {
+                                                if (date[0].substring(0, 2).equals(month)) {
                                                     data.add(new Point(Integer.parseInt(date[0].substring(3, 5)), Integer.parseInt(date[1])));
                                                 }
                                             }
@@ -167,7 +189,7 @@ public class HistoricalGraphActivity extends AppCompatActivity implements View.O
                                         runOnUiThread(new Runnable() {
                                             @Override
                                             public void run() {
-                                                if (date[0].substring(0, 2).equals("03")) {
+                                                if (date[0].substring(0, 2).equals(month)) {
                                                     data.add(new Point(Integer.parseInt(date[0].substring(3, 5)), Integer.parseInt(date[1])));
                                                 }
                                             }
