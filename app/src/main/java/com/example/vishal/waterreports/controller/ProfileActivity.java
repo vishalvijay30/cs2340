@@ -249,6 +249,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
                                         "Not authorized to view Historical Graph", Toast.LENGTH_LONG).show();
                             } else {
                                 finish();
+                                System.out.println("Reached");
                                 startActivity(new Intent(ProfileActivity.this, GenerateGraphActivity.class));
                             }
                         }

@@ -30,7 +30,8 @@ public class GenerateGraphActivity extends AppCompatActivity implements View.OnC
         populatePPMSpinner();
         populateMonthSpinner();
 
-        buttonGenerate = (Button) findViewById(R.id.buttonGenerate);
+        buttonGenerate = (Button) findViewById(R.id.buttonGen);
+        buttonGenerate.setOnClickListener(this);
     }
 
     /**
@@ -44,8 +45,6 @@ public class GenerateGraphActivity extends AppCompatActivity implements View.OnC
                 android.R.layout.simple_spinner_item, list);
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         ppmSpinner.setAdapter(dataAdapter);
-
-        buttonGenerate.setOnClickListener(this);
     }
 
     /**
@@ -75,11 +74,12 @@ public class GenerateGraphActivity extends AppCompatActivity implements View.OnC
     public void onClick(View view) {
         if (view == buttonGenerate) {
             String dataType = (String) ppmSpinner.getSelectedItem();
+            System.out.println("harambe "+dataType);
             String month = (String) monthSpinner.getSelectedItem();
-            Intent i = new Intent(GenerateGraphActivity.this, HistoricalGraphActivity.class);
-            i.putExtra("data", dataType);
-            i.putExtra("month", month);
-            startActivity(i);
+            Intent myIntent = new Intent(GenerateGraphActivity.this, HistoricalGraphActivity.class);
+            myIntent.putExtra("data", dataType);
+            myIntent.putExtra("month", month);
+            startActivity(myIntent);
         }
     }
 }

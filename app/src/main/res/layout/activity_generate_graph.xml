@@ -47,7 +47,7 @@
             android:layout_height="wrap_content"
             android:text="Generate Graph"
             android:layout_margin="5dp"
-            android:id="@+id/buttonGenerate"/>
+            android:id="@+id/buttonGen"/>
 
     </LinearLayout>
 
