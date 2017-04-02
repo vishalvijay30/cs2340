@@ -74,7 +74,6 @@ public class GenerateGraphActivity extends AppCompatActivity implements View.OnC
     public void onClick(View view) {
         if (view == buttonGenerate) {
             String dataType = (String) ppmSpinner.getSelectedItem();
-            System.out.println("harambe "+dataType);
             String month = (String) monthSpinner.getSelectedItem();
             Intent myIntent = new Intent(GenerateGraphActivity.this, HistoricalGraphActivity.class);
             myIntent.putExtra("data", dataType);

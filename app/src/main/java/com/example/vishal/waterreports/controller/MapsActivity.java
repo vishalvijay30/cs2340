@@ -1,5 +1,6 @@
 package com.example.vishal.waterreports.controller;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.location.Address;
 import android.location.Geocoder;
@@ -40,6 +41,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
     private Button buttonBack;
+    private ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,9 +55,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference();
 
+        progressDialog = new ProgressDialog(this);
+
         Intent i = getIntent();
         numReports = i.getIntExtra("num", 0);
-        System.out.println("Hello " +numReports);
 
         buttonBack = (Button) findViewById(R.id.buttonBack);
         buttonBack.setOnClickListener(this);
@@ -73,6 +76,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
      */
     @Override
     public void onMapReady(GoogleMap googleMap) {
+        progressDialog.setMessage("Loading...");
+        progressDialog.show();
         mMap = googleMap;
         final ArrayList<WaterSourceReport> reports = loadInfo();
 
@@ -83,6 +88,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     @Override
                     public void run() {
                         populateMap(reports);
+                        progressDialog.hide();
                     }
                 });
             }
@@ -168,7 +174,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
      */
     private void populateMap(ArrayList<WaterSourceReport> reports) {
         for (WaterSourceReport report : reports) {
-            System.out.println("reached");
             List<Address> addressList = null;
             Geocoder geocoder = new Geocoder(this);
             try {
@@ -176,12 +181,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            Address address = addressList.get(0);
-            LatLng loc = new LatLng(address.getLatitude(), address.getLongitude());
-            mMap.addMarker(new MarkerOptions().position(loc).title(
-                    "Report #"+report.REP_NUMBER).snippet(report.toString()));
-            mMap.moveCamera(CameraUpdateFactory.newLatLng(loc));
-            System.out.println("monkey: "+report);
+            if (!addressList.isEmpty()) {
+                Address address = addressList.get(0);
+                LatLng loc = new LatLng(address.getLatitude(), address.getLongitude());
+                mMap.addMarker(new MarkerOptions().position(loc).title(
+                        "Report #" + report.REP_NUMBER).snippet(report.toString()));
+                mMap.moveCamera(CameraUpdateFactory.newLatLng(loc));
+            }
         }
     }
 

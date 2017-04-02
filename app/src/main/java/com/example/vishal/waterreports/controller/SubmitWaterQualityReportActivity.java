@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.vishal.waterreports.R;
 import com.example.vishal.waterreports.model.OverallWaterCondition;
@@ -43,6 +44,7 @@ public class SubmitWaterQualityReportActivity extends AppCompatActivity implemen
     private Button submit;
     private Button cancel;
 
+    private boolean didAddQualityReport;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,6 +54,8 @@ public class SubmitWaterQualityReportActivity extends AppCompatActivity implemen
         user = firebaseAuth.getCurrentUser();
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference();
+
+        didAddQualityReport = true;
 
         editTextDate = (EditText) findViewById(R.id.DateTextView);
         editTextTime = (EditText) findViewById(R.id.TimeTextView);
@@ -114,8 +118,10 @@ public class SubmitWaterQualityReportActivity extends AppCompatActivity implemen
     public void onClick(View view) {
         if (view == submit) {
             addQualityReport();
-            finish();
-            startActivity(new Intent(SubmitWaterQualityReportActivity.this, ProfileActivity.class));
+            if (didAddQualityReport) {
+                finish();
+                startActivity(new Intent(SubmitWaterQualityReportActivity.this, ProfileActivity.class));
+            }
         }
 
         if (view == cancel) {
@@ -133,8 +139,16 @@ public class SubmitWaterQualityReportActivity extends AppCompatActivity implemen
         String reporterName = textViewReporterName.getText().toString().trim().substring(15);
         String location = editTextLocation.getText().toString().trim();
         OverallWaterCondition condition = (OverallWaterCondition) overallConditionSpinner.getSelectedItem();
+        if (date.isEmpty() || time.isEmpty() || reporterName.isEmpty() || location.isEmpty() ||
+                condition == null || editTextVirusPPM.getText().toString().isEmpty() ||
+                editTextContaminantPPM.getText().toString().isEmpty()) {
+            Toast.makeText(SubmitWaterQualityReportActivity.this, "One or more fields is empty", Toast.LENGTH_LONG).show();
+            didAddQualityReport = false;
+            return;
+        }
         int virus = Integer.parseInt(editTextVirusPPM.getText().toString().trim());
         int contam = Integer.parseInt(editTextContaminantPPM.getText().toString().trim());
+
 
         int repNum = Integer.parseInt(textViewReportNumber.getText().toString().substring(textViewReportNumber.length()-1));
         databaseReference.child("uniqueNumberQual").setValue(repNum + 1);

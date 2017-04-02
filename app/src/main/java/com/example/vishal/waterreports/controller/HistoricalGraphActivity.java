@@ -1,11 +1,13 @@
 package com.example.vishal.waterreports.controller;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.vishal.waterreports.R;
 import com.google.firebase.database.DataSnapshot;
@@ -28,9 +30,11 @@ public class HistoricalGraphActivity extends AppCompatActivity implements View.O
 
     private String type;
     private String month;
+    private boolean monthDataExists;
 
     private Button backButton;
     private GraphView graph;
+    private ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,10 +44,12 @@ public class HistoricalGraphActivity extends AppCompatActivity implements View.O
         Intent i = getIntent();
         type = i.getStringExtra("data");
         month = i.getStringExtra("month");
+        monthDataExists = true;
 
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference();
 
+        progressDialog = new ProgressDialog(this);
         backButton = (Button) findViewById(R.id.backButton);
         graph = (GraphView) findViewById(R.id.graph);
         populateGraph();
@@ -81,6 +87,8 @@ public class HistoricalGraphActivity extends AppCompatActivity implements View.O
      */
     private void populateGraph() {
         final ArrayList<Point> list = getDataPoints();
+        progressDialog.setMessage("Loading...");
+        progressDialog.show();
         new Timer().schedule(new TimerTask() {
             @Override
             public void run() {
@@ -102,6 +110,12 @@ public class HistoricalGraphActivity extends AppCompatActivity implements View.O
                         graph.getViewport().setMaxX(32);
 
                         graph.addSeries(series);
+                        if (!monthDataExists && list.size() == 0) {
+                            Toast.makeText(HistoricalGraphActivity.this, "No data available for this month", Toast.LENGTH_LONG).show();
+                            progressDialog.hide();
+                        } else {
+                            progressDialog.hide();
+                        }
                     }
                 });
             }
@@ -150,7 +164,12 @@ public class HistoricalGraphActivity extends AppCompatActivity implements View.O
                                         runOnUiThread(new Runnable() {
                                             @Override
                                             public void run() {
-                                                if (date[0].substring(0, 2).equals(month)) {
+                                                if (date[0].length() == 0) {
+                                                    monthDataExists = false;
+                                                    //Toast.makeText(HistoricalGraphActivity.this, "No data available for this month", Toast.LENGTH_LONG).show();
+                                                    //progressDialog.hide();
+                                                } else if (date[0].substring(0, 2).equals(month)) {
+                                                    monthDataExists = true;
                                                     data.add(new Point(Integer.parseInt(date[0].substring(3, 5)), Integer.parseInt(date[1])));
                                                 }
                                             }

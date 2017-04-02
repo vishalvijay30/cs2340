@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.vishal.waterreports.R;
 import com.example.vishal.waterreports.model.ConditionOfWater;
@@ -43,6 +44,8 @@ public class SubmitWaterSourceReportActivity extends AppCompatActivity implement
     private Spinner waterTypeSpinner;
     private Spinner waterConditionSpinner;
 
+    private boolean didAddwaterReport;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,6 +69,8 @@ public class SubmitWaterSourceReportActivity extends AppCompatActivity implement
 
         buttonSubmit.setOnClickListener(this);
         buttonCancel.setOnClickListener(this);
+
+        didAddwaterReport = true;
 
         //textViewReportNumber.setText("Report Number: " + Integer.toString(++WaterSourceReport.REPORT_NUMBER));
 
@@ -133,8 +138,10 @@ public class SubmitWaterSourceReportActivity extends AppCompatActivity implement
     public void onClick(View view) {
         if (view == buttonSubmit) {
             addWaterReport();
-            finish();
-            startActivity(new Intent(this, ProfileActivity.class));
+            if (didAddwaterReport) {
+                finish();
+                startActivity(new Intent(this, ProfileActivity.class));
+            }
         }
 
         if (view == buttonCancel) {
@@ -153,8 +160,14 @@ public class SubmitWaterSourceReportActivity extends AppCompatActivity implement
         String location = editTextWaterLocation.getText().toString().trim();
         TypeOfWater waterType = (TypeOfWater) waterTypeSpinner.getSelectedItem();
         ConditionOfWater waterCondition = (ConditionOfWater) waterConditionSpinner.getSelectedItem();
-
-        int repNum = Integer.parseInt(textViewReportNumber.getText().toString().substring(textViewReportNumber.length()-1));
+        if (date.isEmpty() || time.isEmpty() || reporterName.isEmpty() || location.isEmpty()
+                || waterType == null || waterCondition == null) {
+            Toast.makeText(SubmitWaterSourceReportActivity.this, "One or more fields is empty",
+                    Toast.LENGTH_LONG).show();
+            didAddwaterReport = false;
+        }
+        int repNum = Integer.parseInt(textViewReportNumber.getText().toString().substring(
+                textViewReportNumber.length()-1));
         databaseReference.child("uniqueNumber").setValue(repNum + 1);
 
         WaterSourceReport report = new WaterSourceReport(date, time, repNum,

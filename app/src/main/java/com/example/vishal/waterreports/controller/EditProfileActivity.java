@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.vishal.waterreports.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -105,10 +106,14 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
     @Override
     public void onClick(View view) {
         if (view == okButton) {
-            updateName(editTextName.getText().toString().trim());
-            updateHomeAddress(editTextHomeAddress.getText().toString().trim());
-            finish();
-            startActivity(new Intent(EditProfileActivity.this, ProfileActivity.class));
+            if (editTextName.length() == 0) {
+                Toast.makeText(EditProfileActivity.this, "Name cannot be empty", Toast.LENGTH_LONG).show();
+            } else {
+                updateName(editTextName.getText().toString().trim());
+                updateHomeAddress(editTextHomeAddress.getText().toString().trim());
+                finish();
+                startActivity(new Intent(EditProfileActivity.this, ProfileActivity.class));
+            }
         }
 
         if (view == cancelButton) {

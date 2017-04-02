@@ -132,8 +132,13 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                             finish();
                             startActivity(new Intent(RegisterActivity.this, ProfileActivity.class));
                         } else {
-                            Toast.makeText(RegisterActivity.this, "Failed to register", Toast.LENGTH_LONG).show();
-                            progressDialog.hide();
+                            if (password.length() < 6) {
+                                Toast.makeText(RegisterActivity.this, "Password must be at least 6 characters long", Toast.LENGTH_LONG).show();
+                                progressDialog.hide();
+                            } else {
+                                Toast.makeText(RegisterActivity.this, "Failed to Register", Toast.LENGTH_LONG).show();
+                                progressDialog.hide();
+                            }
                         }
                     }
                 });
