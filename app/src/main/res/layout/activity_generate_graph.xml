@@ -28,6 +28,13 @@
         android:textSize="30sp"
         android:textColor="@color/common_google_signin_btn_text_dark_focused" />
 
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/locationEditText"
+            android:hint="@string/location_prompt"
+            android:layout_margin="5dp"> </EditText>
+
         <Spinner
             android:layout_width="match_parent"
             android:layout_height="30dp"

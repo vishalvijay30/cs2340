@@ -33,6 +33,7 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
+@SuppressWarnings("ALL")
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback,
         View.OnClickListener {
 

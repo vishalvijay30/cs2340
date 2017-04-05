@@ -6,4 +6,8 @@
     <string name="ppm_prompt">Choose PPM Type</string>
     <string name="month_prompt">Choose Month</string>
     <string name="title_activity_maps">Map</string>
+    <string name="facebook_app_id">378889142504436</string>
+    <string name="share">Share</string>
+    <string name="testSuccessfulRegistration">Hello Jim Apple</string>
+    <string name="location_prompt">Choose Location</string>
 </resources>

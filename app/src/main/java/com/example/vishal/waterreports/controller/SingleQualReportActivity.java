@@ -14,6 +14,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+@SuppressWarnings("ALL")
 public class SingleQualReportActivity extends AppCompatActivity implements View.OnClickListener {
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;

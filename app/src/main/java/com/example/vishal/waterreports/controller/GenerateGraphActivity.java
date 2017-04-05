@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 
 import com.example.vishal.waterreports.R;
@@ -15,6 +16,7 @@ import java.util.List;
 
 public class GenerateGraphActivity extends AppCompatActivity implements View.OnClickListener {
 
+    private EditText locationEditText;
     private Spinner ppmSpinner;
     private Spinner monthSpinner;
     private Button buttonGenerate;
@@ -24,8 +26,10 @@ public class GenerateGraphActivity extends AppCompatActivity implements View.OnC
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_generate_graph);
 
+        locationEditText = (EditText) findViewById(R.id.locationEditText);
         ppmSpinner = (Spinner) findViewById(R.id.ppmSpinner);
         monthSpinner = (Spinner) findViewById(R.id.monthSpinner);
+
 
         populatePPMSpinner();
         populateMonthSpinner();
@@ -33,6 +37,57 @@ public class GenerateGraphActivity extends AppCompatActivity implements View.OnC
         buttonGenerate = (Button) findViewById(R.id.buttonGen);
         buttonGenerate.setOnClickListener(this);
     }
+
+//    /**
+//     * Populate location spinner with locations for which water reports exist
+//     */
+//    private void populateLocationSpinner() {
+//        final List<String> list = new ArrayList<>();
+//        //list.add("Atlanta, GA");
+//        final int[] num = new int[1];
+//        databaseReference.child("uniqueNumberQual").addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(DataSnapshot dataSnapshot) {
+//                num[0] = dataSnapshot.getValue(Integer.class);
+//            }
+//
+//            @Override
+//            public void onCancelled(DatabaseError databaseError) {
+//
+//            }
+//        });
+//
+//        new Timer().schedule(new TimerTask() {
+//            @Override
+//            public void run() {
+//                runOnUiThread(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        for (int i = 0; i < num[0]; i++) {
+//                            databaseReference.child("QualityReports").child(Integer.toString(i)).addValueEventListener(new ValueEventListener() {
+//                                @Override
+//                                public void onDataChange(DataSnapshot dataSnapshot) {
+//                                    if (!list.contains(dataSnapshot.child("LOCATION").getValue(String.class))) {
+//                                        list.add(dataSnapshot.child("LOCATION").getValue(String.class));
+//                                    }
+//                                }
+//
+//                                @Override
+//                                public void onCancelled(DatabaseError databaseError) {
+//
+//                                }
+//                            });
+//                        }
+//                    }
+//                });
+//            }
+//        }, 100);
+//
+//        ArrayAdapter<String> dataAdapter = new ArrayAdapter<>(this,
+//                android.R.layout.simple_spinner_item, list);
+//        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//        locationSpinner.setAdapter(dataAdapter);
+//    }
 
     /**
      * Populate PPM type spinner with data values
@@ -75,9 +130,11 @@ public class GenerateGraphActivity extends AppCompatActivity implements View.OnC
         if (view == buttonGenerate) {
             String dataType = (String) ppmSpinner.getSelectedItem();
             String month = (String) monthSpinner.getSelectedItem();
+            String location = locationEditText.getText().toString().trim();
             Intent myIntent = new Intent(GenerateGraphActivity.this, HistoricalGraphActivity.class);
             myIntent.putExtra("data", dataType);
             myIntent.putExtra("month", month);
+            myIntent.putExtra("location", location);
             startActivity(myIntent);
         }
     }

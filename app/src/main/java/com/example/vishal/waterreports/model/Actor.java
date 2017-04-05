@@ -22,8 +22,8 @@ public class Actor {
      * @param homeAddress   the home address of the actor
      * @param accountType   the type of account of the actor
      */
-    public Actor(String name, String EMAIL, String homeAddress,
-                   AccountType accountType) {
+    public Actor(String name, String EMAIL, @SuppressWarnings("SameParameterValue") String homeAddress,
+                 AccountType accountType) {
         this.name = name;
         this.EMAIL = EMAIL;
         this.homeAddress = homeAddress;

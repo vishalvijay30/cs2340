@@ -32,6 +32,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     private ProgressDialog progressDialog;
 
+    private int numLoginTries;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,6 +53,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         textViewRegister.setOnClickListener(this);
         buttonCancel.setOnClickListener(this);
         textViewForgotPassword.setOnClickListener(this);
+
+        numLoginTries = 0;
     }
 
     /**
@@ -85,7 +88,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                             startActivity(new Intent(LoginActivity.this, ProfileActivity.class));
                         } else {
                             progressDialog.hide();
-                            Toast.makeText(LoginActivity.this, "Failed to login", Toast.LENGTH_LONG).show();
+                            Toast.makeText(LoginActivity.this, "Failed to login", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
@@ -94,7 +97,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @Override
     public void onClick(View view) {
         if (view == buttonLogin) {
-            userLogin();
+            if (++numLoginTries <= 3) {
+                userLogin();
+            } else {
+                Toast.makeText(LoginActivity.this,
+                        "Locked out due to too many incorrect login attempts. Try again later.",
+                        Toast.LENGTH_LONG).show();
+            }
         }
 
         if (view == textViewRegister) {

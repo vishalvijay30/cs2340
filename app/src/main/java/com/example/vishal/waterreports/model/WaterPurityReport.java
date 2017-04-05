@@ -1,6 +1,4 @@
 package com.example.vishal.waterreports.model;
-import java.util.ArrayList;
-
 /**
  * Created by Team 42, CS2430 Spring 2017
  *
@@ -18,8 +16,6 @@ public class WaterPurityReport {
     public final OverallWaterCondition CONDITION;
     public final int VIRUS;
     public final int CONTAMINANT;
-    public static ArrayList<WaterPurityReport> waterPurityReports
-            = new ArrayList<>();
 
     /**
      * Create a new Water Purity Report
@@ -44,7 +40,6 @@ public class WaterPurityReport {
         this.CONDITION = CONDITION;
         this.VIRUS = VIRUS;
         this.CONTAMINANT = CONTAMINANT;
-        waterPurityReports.add(this);
     }
 
 //    /* Getters for all read only fields */

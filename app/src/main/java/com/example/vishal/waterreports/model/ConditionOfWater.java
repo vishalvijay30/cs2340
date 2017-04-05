@@ -5,7 +5,7 @@ public enum ConditionOfWater {
 
 	private String waterCondition;
 
-	private ConditionOfWater(String waterCondition) {
+	ConditionOfWater(String waterCondition) {
 		this.waterCondition = waterCondition;
 	}
 

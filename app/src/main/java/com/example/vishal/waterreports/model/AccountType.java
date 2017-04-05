@@ -6,7 +6,7 @@ public enum AccountType {
 
 	private String accountType;
 
-	private AccountType(String accountType) {
+	AccountType(String accountType) {
 		this.accountType = accountType;
 	}
 

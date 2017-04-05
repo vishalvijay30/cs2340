@@ -18,6 +18,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+@SuppressWarnings("ALL")
 public class EditProfileActivity extends AppCompatActivity implements View.OnClickListener{
 
     private FirebaseAuth firebaseAuth;

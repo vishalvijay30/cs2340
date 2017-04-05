@@ -6,7 +6,7 @@ public enum OverallWaterCondition {
 
     private String condition;
 
-    private OverallWaterCondition(String condition) {
+    OverallWaterCondition(String condition) {
         this.condition = condition;
     }
 

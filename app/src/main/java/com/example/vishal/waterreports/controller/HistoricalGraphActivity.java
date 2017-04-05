@@ -23,6 +23,7 @@ import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
+@SuppressWarnings("ALL")
 public class HistoricalGraphActivity extends AppCompatActivity implements View.OnClickListener {
 
     private FirebaseDatabase firebaseDatabase;
@@ -30,6 +31,7 @@ public class HistoricalGraphActivity extends AppCompatActivity implements View.O
 
     private String type;
     private String month;
+    private String location;
     private boolean monthDataExists;
 
     private Button backButton;
@@ -44,6 +46,8 @@ public class HistoricalGraphActivity extends AppCompatActivity implements View.O
         Intent i = getIntent();
         type = i.getStringExtra("data");
         month = i.getStringExtra("month");
+        location = i.getStringExtra("location");
+        System.out.println("Harambe "+location);
         monthDataExists = true;
 
         firebaseDatabase = FirebaseDatabase.getInstance();
@@ -189,12 +193,13 @@ public class HistoricalGraphActivity extends AppCompatActivity implements View.O
                         @Override
                         public void run() {
                             for (int i = 0; i < numReports[0]; i++) {
-                                final String[] date = new String[2];
+                                final String[] date = new String[3];
                                 databaseReference.child("QualityReports").child(Integer.toString(i)).addValueEventListener(new ValueEventListener() {
                                     @Override
                                     public void onDataChange(DataSnapshot dataSnapshot) {
                                         date[0] = dataSnapshot.child("REPORT_DATE").getValue(String.class);
                                         date[1] = dataSnapshot.child("CONTAMINANT").getValue().toString();
+                                        date[2] = dataSnapshot.child("LOCATION").getValue().toString();
                                     }
 
                                     @Override
@@ -208,7 +213,7 @@ public class HistoricalGraphActivity extends AppCompatActivity implements View.O
                                         runOnUiThread(new Runnable() {
                                             @Override
                                             public void run() {
-                                                if (date[0].substring(0, 2).equals(month)) {
+                                                if (date[0].substring(0, 2).equals(month) && date[2].equals(location)) {
                                                     data.add(new Point(Integer.parseInt(date[0].substring(3, 5)), Integer.parseInt(date[1])));
                                                 }
                                             }

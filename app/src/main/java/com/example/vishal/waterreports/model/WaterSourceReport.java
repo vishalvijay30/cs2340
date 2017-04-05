@@ -1,7 +1,5 @@
 package com.example.vishal.waterreports.model;
 
-import java.util.ArrayList;
-
 /**
  * Created by Team 42, CS2430 Spring 2017
  *
@@ -19,9 +17,6 @@ public class WaterSourceReport {
     public final String LOCATION;
     public final TypeOfWater WATER_TYPE;
     public final ConditionOfWater WATER_CONDITION;
-    public static ArrayList<WaterSourceReport> waterSourceReports
-            = new ArrayList<>();
-
     /**
      * Create a new Water Source Report
      * @param REPORT_DATE       the date the report was submitted (##-##-####)
@@ -42,7 +37,7 @@ public class WaterSourceReport {
         this.LOCATION = LOCATION;
         this.WATER_TYPE = WATER_TYPE;
         this.WATER_CONDITION = WATER_CONDITION;
-        waterSourceReports.add(this);
+
     }
     /* Getters for all read only fields */
 //    public String getReportDate() {

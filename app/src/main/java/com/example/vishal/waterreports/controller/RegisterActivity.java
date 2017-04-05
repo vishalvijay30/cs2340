@@ -42,6 +42,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     private FirebaseAuth firebaseAuth;
     private DatabaseReference databaseReference;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -120,6 +121,10 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             return;
         }
 
+        if (!email.contains("@")) {
+            Toast.makeText(RegisterActivity.this, "Please enter valid email", Toast.LENGTH_LONG).show();
+        }
+
         progressDialog.setMessage("Registering...");
         progressDialog.show();
 
@@ -156,6 +161,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         Actor actor = new Actor(userName, userEmail, "", userAccountType);
 
         FirebaseUser user = firebaseAuth.getCurrentUser();
+        //noinspection ConstantConditions
         databaseReference.child(user.getUid()).setValue(actor);
     }
 }

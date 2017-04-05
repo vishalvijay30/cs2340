@@ -23,6 +23,7 @@ import java.io.Serializable;
 import java.util.Timer;
 import java.util.TimerTask;
 
+@SuppressWarnings("ALL")
 public class ProfileActivity extends AppCompatActivity implements View.OnClickListener, Serializable {
 
     private FirebaseAuth firebaseAuth;

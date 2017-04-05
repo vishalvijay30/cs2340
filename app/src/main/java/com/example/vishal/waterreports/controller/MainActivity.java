@@ -9,6 +9,7 @@ import android.widget.Button;
 import com.example.vishal.waterreports.R;
 import com.google.firebase.auth.FirebaseAuth;
 
+@SuppressWarnings("ALL")
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private Button registerButton;

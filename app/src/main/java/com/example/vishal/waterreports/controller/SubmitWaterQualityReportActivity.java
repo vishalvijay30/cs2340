@@ -25,6 +25,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
+@SuppressWarnings("ALL")
 public class SubmitWaterQualityReportActivity extends AppCompatActivity implements View.OnClickListener {
 
     private FirebaseDatabase firebaseDatabase;

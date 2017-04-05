@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.example.vishal.waterreports.R;
 
+@SuppressWarnings("FieldCanBeLocal")
 public class AllQualReportsActivity extends ListActivity implements View.OnClickListener {
 
     private TextView numSysReports;

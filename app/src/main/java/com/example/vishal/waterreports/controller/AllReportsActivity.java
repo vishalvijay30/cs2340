@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.example.vishal.waterreports.R;
 
+@SuppressWarnings("ALL")
 public class AllReportsActivity extends ListActivity implements OnClickListener{
 
     private TextView numSysReports;

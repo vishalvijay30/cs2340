@@ -44,6 +44,9 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
 
         <activity
             android:name=".controller.MapsActivity"
@@ -52,7 +55,16 @@
         <activity android:name=".controller.AllQualReportsActivity" />
         <activity android:name=".controller.SingleQualReportActivity" />
         <activity android:name=".controller.HistoricalGraphActivity" />
-        <activity android:name=".controller.GenerateGraphActivity"></activity>
+        <activity android:name=".controller.GenerateGraphActivity" />
+        <activity
+            android:name="com.facebook.FacebookActivity"
+            android:configChanges=
+                "keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+            android:theme="@style/com_facebook_activity_theme"
+            android:label="@string/app_name" />
+        <provider android:authorities="com.facebook.app.FacebookContentProvider378889142504436"
+            android:name="com.facebook.FacebookContentProvider"
+            android:exported="true"/>
     </application>
 
 </manifest>

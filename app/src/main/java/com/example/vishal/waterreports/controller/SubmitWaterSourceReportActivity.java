@@ -1,6 +1,9 @@
 package com.example.vishal.waterreports.controller;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -15,6 +18,8 @@ import com.example.vishal.waterreports.R;
 import com.example.vishal.waterreports.model.ConditionOfWater;
 import com.example.vishal.waterreports.model.TypeOfWater;
 import com.example.vishal.waterreports.model.WaterSourceReport;
+import com.facebook.share.model.ShareLinkContent;
+import com.facebook.share.widget.ShareButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -26,12 +31,15 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
+@SuppressWarnings("ALL")
 public class SubmitWaterSourceReportActivity extends AppCompatActivity implements View.OnClickListener{
 
     private FirebaseAuth firebaseAuth;
     private FirebaseUser user;
     private DatabaseReference databaseReference;
     private FirebaseDatabase firebaseDatabase;
+
+    private ShareButton shareButton;
 
     private EditText editTextDate;
     private EditText editTextTime;
@@ -63,6 +71,33 @@ public class SubmitWaterSourceReportActivity extends AppCompatActivity implement
         editTextWaterLocation = (EditText) findViewById(R.id.LocationEditText);
         buttonSubmit = (Button) findViewById(R.id.SubmitButton);
         buttonCancel = (Button) findViewById(R.id.CancelButton);
+
+        shareButton = (ShareButton) findViewById(R.id.share_btn);
+        System.out.println(shareButton);
+        shareButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder shareDialog = new AlertDialog.Builder(
+                        SubmitWaterSourceReportActivity.this);
+                shareDialog.setTitle("Share Water Report");
+                shareDialog.setMessage("Share report to Facebook?");
+                shareDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        ShareLinkContent content = new ShareLinkContent.Builder()
+                                .setContentUrl(Uri.parse("https://developers.facebook.com"))
+                                .build();
+                        shareButton.setShareContent(content);
+                    }
+                });
+                shareDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+                shareDialog.show();
+            }
+        });
+
 
         waterTypeSpinner = (Spinner) findViewById(R.id.WaterTypeSpinner);
         waterConditionSpinner = (Spinner) findViewById(R.id.WaterConditionSpinner);
