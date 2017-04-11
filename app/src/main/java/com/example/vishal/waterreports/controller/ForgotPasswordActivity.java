@@ -14,11 +14,13 @@ import android.widget.Toast;
 import com.example.vishal.waterreports.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+
 public class ForgotPasswordActivity extends AppCompatActivity implements View.OnClickListener {
 
     private EditText emailText;
-    private Button sendEmailButton;
+    private Button buttonSendEmail;
     private Button buttonCancel;
     private ProgressDialog progressDialog;
 
@@ -33,16 +35,16 @@ public class ForgotPasswordActivity extends AppCompatActivity implements View.On
         progressDialog = new ProgressDialog(ForgotPasswordActivity.this);
 
         emailText = (EditText) findViewById(R.id.editTextForgotPasswordEmail);
-        sendEmailButton = (Button) findViewById(R.id.buttonReset);
+        buttonSendEmail = (Button) findViewById(R.id.buttonSendEmail);
         buttonCancel = (Button) findViewById(R.id.buttonCancel);
 
-        sendEmailButton.setOnClickListener(this);
+        buttonSendEmail.setOnClickListener(this);
         buttonCancel.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View view) {
-        if (view == sendEmailButton) {
+        if (view == buttonSendEmail) {
             resetPassword();
         }
 
@@ -75,6 +77,8 @@ public class ForgotPasswordActivity extends AppCompatActivity implements View.On
                         if (task.isSuccessful()) {
                             progressDialog.hide();
                             Toast.makeText(ForgotPasswordActivity.this, "Email Sent!", Toast.LENGTH_LONG).show();
+                            finish();
+                            startActivity(new Intent(ForgotPasswordActivity.this, LoginActivity.class));
                         } else {
                             progressDialog.hide();
                             Toast.makeText(ForgotPasswordActivity.this, "Invalid Email", Toast.LENGTH_LONG).show();

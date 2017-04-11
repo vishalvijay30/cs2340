@@ -67,7 +67,7 @@ public class ResetPasswordTest {
         // Enter an empty email and press submit
         onView(withId(R.id.editTextForgotPasswordEmail))
                 .perform(typeText(""), closeSoftKeyboard());
-        onView(withId(R.id.buttonReset)).perform(click());
+        onView(withId(R.id.buttonSendEmail)).perform(click());
         // Now test that the "Please enter valid email" message appears
         ForgotPasswordActivity activity = activityTestRule.getActivity();
         onView(withText(R.id.editTextForgotPasswordEmail)).inRoot(new ToastMatcher())
@@ -81,7 +81,7 @@ public class ResetPasswordTest {
         // Enter a valid email and press submit
         onView(withId(R.id.editTextForgotPasswordEmail))
                 .perform(typeText("28"), closeSoftKeyboard());
-        onView(withId(R.id.buttonReset)).perform(click());
+        onView(withId(R.id.buttonSendEmail)).perform(click());
         // Now test that the  "Invalid Email" message appears
         ForgotPasswordActivity activity = activityTestRule.getActivity();
         onView(withText(R.id.editTextForgotPasswordEmail)).inRoot(new ToastMatcher())
@@ -95,7 +95,7 @@ public class ResetPasswordTest {
         // Enter a valid email and press submit
         onView(withId(R.id.editTextForgotPasswordEmail))
                 .perform(typeText("shaungchapman@gmail.com"), closeSoftKeyboard());
-        onView(withId(R.id.buttonReset)).perform(click());
+        onView(withId(R.id.buttonSendEmail)).perform(click());
         // Now test that the "Email Sent!" message appears
         ForgotPasswordActivity activity = activityTestRule.getActivity();
         onView(withText(R.id.editTextForgotPasswordEmail)).inRoot(new ToastMatcher())
