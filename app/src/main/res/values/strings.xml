@@ -6,4 +6,7 @@
     <string name="ppm_prompt">Choose PPM Type</string>
     <string name="month_prompt">Choose Month</string>
     <string name="title_activity_maps">Map</string>
+    <string name="forgot_password_enter">Please enter valid email</string>
+    <string name="forgot_password_invalid">Invalid Email</string>
+    <string name="forgot_password_valid">Email Sent!</string>
 </resources>

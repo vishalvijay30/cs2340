@@ -5,16 +5,21 @@ import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.action.ViewActions.closeSoftKeyboard;
 import static android.support.test.espresso.action.ViewActions.typeText;
+import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
+
+import android.content.res.Resources;
 import android.support.test.espresso.Root;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 import android.os.IBinder;
+import android.test.ActivityTestCase;
 import android.view.WindowManager;
 
 import org.hamcrest.Description;
+import org.hamcrest.Matcher;
 import org.hamcrest.TypeSafeMatcher;
 
 import android.support.test.filters.LargeTest;
@@ -31,9 +36,8 @@ import org.junit.runner.RunWith;
  * Tests the resetPassword() method in ForgotPasswordActivity controller
  *
  */
-@RunWith(AndroidJUnit4.class)
 @LargeTest
-public class ResetPasswordTest {
+public class ResetPasswordTest extends ActivityTestCase {
 
     // Used to test that the toast message matches a custom string
     private class ToastMatcher extends TypeSafeMatcher<Root> {
@@ -56,6 +60,14 @@ public class ResetPasswordTest {
         }
     }
 
+    public void isToastMessageDisplayed(int textId) {
+        onView(withText(textId)).inRoot(isToast()).check(matches(isDisplayed()));
+    }
+
+    public Matcher<Root> isToast() {
+        return new ToastMatcher();
+    }
+
     @Rule
     public ActivityTestRule<ForgotPasswordActivity> activityTestRule =
             new ActivityTestRule<>(ForgotPasswordActivity.class);
@@ -69,9 +81,7 @@ public class ResetPasswordTest {
                 .perform(typeText(""), closeSoftKeyboard());
         onView(withId(R.id.buttonSendEmail)).perform(click());
         // Now test that the "Please enter valid email" message appears
-        ForgotPasswordActivity activity = activityTestRule.getActivity();
-        onView(withText(R.id.editTextForgotPasswordEmail)).inRoot(new ToastMatcher())
-                .check(matches(withText("Please enter valid email")));
+        isToastMessageDisplayed(R.string.forgot_password_enter);;
     }
 
     // The method should display a "Invalid Email" toast message if
@@ -83,9 +93,6 @@ public class ResetPasswordTest {
                 .perform(typeText("28"), closeSoftKeyboard());
         onView(withId(R.id.buttonSendEmail)).perform(click());
         // Now test that the  "Invalid Email" message appears
-        ForgotPasswordActivity activity = activityTestRule.getActivity();
-        onView(withText(R.id.editTextForgotPasswordEmail)).inRoot(new ToastMatcher())
-                .check(matches(withText("Invalid Email")));
     }
 
     // The method should display a "Email Sent!" toast message if
