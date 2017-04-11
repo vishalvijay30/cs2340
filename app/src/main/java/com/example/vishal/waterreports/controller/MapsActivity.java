@@ -134,7 +134,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
      * @param type String representation of type received from firebase
      * @return enum type of the string
      */
-    private TypeOfWater determineWaterType(String type) {
+    public TypeOfWater determineWaterType(String type) {
         if (type.equals("BOTTLED")) {
             return TypeOfWater.BOTTLED;
         } else if (type.equals("WELL")) {
