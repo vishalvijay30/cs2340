@@ -37,8 +37,8 @@ public class SwatiSharmaJUnitTest {
         assertEquals(123, newReport.REP_NUMBER);
         assertEquals("Nemo05", newReport.REPORTER_NAME);
         assertEquals("Atlanta", newReport.LOCATION);
-        assertEquals(currType.getWaterType(), newReport.WATER_TYPE);
-        assertEquals(currCond.getWaterCondition(), newReport.WATER_CONDITION);
+        assertEquals(currType.getWaterType(), newReport.WATER_TYPE.getWaterType());
+        assertEquals(currCond.getWaterCondition(), newReport.WATER_CONDITION.getWaterCondition());
 
     }
 
